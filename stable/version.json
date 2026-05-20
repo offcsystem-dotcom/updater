@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "url": "https://opal-updates.vercel.app/installers/opal-launcher-1.0.0-win32-x64.exe",
+  "required": false,
+  "changelog": [
+    "Updated launcher release to 1.0.0",
+    "Improved update modal UI",
+    "Published official stable installer"
+  ],
+  "body": "This is an optional stable update that installs the latest launcher version."
+}
