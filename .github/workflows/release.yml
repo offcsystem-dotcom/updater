@@ -1,0 +1,35 @@
+name: Publish release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Install
+        run: npm ci
+        working-directory: updater
+      - name: Build
+        run: npm run build
+        working-directory: updater
+      - name: Publish release assets
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TARGET_REPO: offcsystem-dotcom/updater
+          VERSION: ${{ github.ref_name }}
+          # You must provide ASSET_32 and ASSET_64 via repository secrets or store them in the repo (not recommended)
+          ASSET_32: ${{ secrets.ASSET_32_PATH }}
+          ASSET_64: ${{ secrets.ASSET_64_PATH }}
+        run: |
+          node updater/dist/upload.js

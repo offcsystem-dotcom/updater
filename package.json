@@ -1,0 +1,20 @@
+{
+  "name": "updater",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "upload": "node dist/upload.js",
+    "fetch": "node dist/fetch-update.js"
+  },
+  "dependencies": {
+    "@octokit/rest": "^19.0.7"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "@types/node": "^20.5.1"
+  }
+}
